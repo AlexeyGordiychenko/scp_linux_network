@@ -24,3 +24,36 @@
 
 2. possible gateway IP addresses for 10.10.0.0/18 are: `10.10.0.2`, `10.10.10.10`, `10.10.1.255` (`10.0.0.1`, `10.10.100.1` are not possible). 
 
+## Part 2. Static routing between two machines
+
+1. output of `ip a` command on `ws1` and `ws2`
+
+    ![ip a on ws1](img/p2_1.png)
+
+    ![ip a on ws2](img/p2_2.png)
+
+1. `enp0s8` is the local network between `ws1` and `ws2`
+
+    ![config of ws1](img/p2_4.png)
+
+    ![config of ws2](img/p2_3.png)
+
+    restart of the network services:
+
+    ![restart ws1](img/p2_6.png)
+
+    ![restart ws2](img/p2_5.png)
+
+
+2. static routes with `ip r` add
+  
+    ![ip r add ws1](img/p2_8.png)
+
+    ![ip r add ws2](img/p2_7.png)
+
+1. static routes with `netplan config`
+
+    ![netplan ws1](img/p2_10.png)
+
+    ![netplan ws2](img/p2_9.png)
+    
