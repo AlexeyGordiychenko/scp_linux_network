@@ -57,3 +57,19 @@
 
     ![netplan ws2](img/p2_9.png)
     
+## Part 3. iperf3 utility
+
+1. 8 Mbps = 1 MB/s
+   
+   100 MB/s = 800000 Kbps
+
+   1 Gbps = 1000 Mbps
+
+1. `iperf` server running on `ws2`
+   
+   ![iperf on ws2](img/p3_2.png)
+
+   `iperf` client running on `ws1`
+
+   ![iperf on ws1](img/p3_1.png)
+
