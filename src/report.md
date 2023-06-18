@@ -73,3 +73,26 @@
 
    ![iperf on ws1](img/p3_1.png)
 
+## Part 4. Network firewall
+
+1. firewall on `ws1`
+    
+    ![firewall ws1](img/p4_2.png)
+    
+    ![firewall ws2](img/p4_11.png)
+
+    
+    firewall on `ws2`
+    
+    ![firewall ws2](img/p4_1.png)
+    
+    ![firewall ws1](img/p4_22.png)
+
+2. The difference is that the `first` found rule applies, so for `ws1` pings will be be dropped and for `ws2` will not.
+
+3. output of `ping` and `nmap` for `ws1` and `ws2`
+   
+   ![ping nmap on ws1](img/p4_4.png)
+
+   ![ping nmap on ws2](img/p4_3.png)
+
