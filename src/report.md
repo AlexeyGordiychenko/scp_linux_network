@@ -96,3 +96,93 @@
 
    ![ping nmap on ws2](img/p4_3.png)
 
+## Part 5. Static network routing
+
+1. `ws22` machine configuration
+   
+   ![ws22](img/p5_1_ws22.png)
+
+   `r1` machine configuration
+   
+   ![r1](img/p5_1_r1.png)
+
+   `r2` machine configuration
+   
+   ![r2](img/p5_1_r2.png)
+
+    `ws11` machine configuration and `ping` to `r1`
+   
+   ![ws11](img/p5_1_ws11.png)
+
+   `ws21` machine configuration and `ping` to `ws22`
+   
+   ![ws21](img/p5_1_ws21.png)
+
+1. enabling IP forwarding via `sysctl` 
+   
+   ![r1](img/p5_2_1_r1.png)
+
+   ![r2](img/p5_2_1_r2.png)
+
+   enabling IP forwarding via `/etc/sysctl.conf`
+
+   ![r1](img/p5_2_2_r1.png)
+
+   ![r2](img/p5_2_2_r2.png)
+
+1. `ws11` default route configuration:
+   
+    ![ws11](img/p5_3_ws11.png)
+
+    `ws21` default route configuration:
+   
+    ![ws21](img/p5_3_ws21.png)
+
+    `ws22` default route configuration:
+   
+    ![ws22](img/p5_3_ws22.png)
+
+    ping `r2` router from `ws11`
+
+    ![ws11](img/p5_3_ws11_ping.png)
+
+    ![r2](img/p5_3_r2.png)
+
+1. static route to `10.20.0.0` on `r1`
+   
+   ![r1](img/p5_4_r1.png)
+
+   static route to `10.10.0.0` on `r2`
+   
+   ![r2](img/p5_4_r2.png)
+
+   `ip r list 10.10.0.0/18` and `ip r list 0.0.0.0/0` commands on `ws11`
+
+   ![ip r list](img/p5_4_ws11.png)
+
+   the route 10.10.0.0/18 is selected because it's more specific (longer prefix), also packets will be routed via the default route, if the routing table has no other routes, that can be used, which is not the case here.
+
+1. `traceroute` call from `ws11` to `ws21`
+   
+   ![ws11](img/p5_5_ws11.png)
+
+   `tcpdump` on `r1`
+
+   ![r1](img/p5_5_r1.png)
+
+   `Traceroute` is used to track the `path` of a packet on an IP network from source to destination.
+   
+   According to dump we can see that it uses `"Time to Live"` (`TTL`) mechanism. The source sending packets with increasing `TTL` for each hop until it gets to the destination (from `1` to `3` in the dump). The `TTL` value specifies how many routers the packet can pass through before being discarded. With each passed route `TTL` decreases.
+   
+   After the packet is discarded (`TTL` after decreasing equals `0`) the destination sends a packet to the source with `"ICMP time exceeded"` if the packet didn't reach the destination and `"Echo Reply"` if the destination is reached. 
+   
+   Traceroute also uses `3` packets on each hop to get a more accurate average of the round-trip time. You can change the amount of packets with `-q` option.
+
+1. traffic capture going through `eth0` on `r1`
+   
+   ![r1](img/p5_6_r1.png)
+
+   ping a non-existent IP `10.30.0.111` from `ws11`:
+
+   ![ws11](img/p5_6_ws11.png)
+
