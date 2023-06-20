@@ -186,3 +186,46 @@
 
    ![ws11](img/p5_6_ws11.png)
 
+## Part 6. Dynamic IP configuration using DHCP
+
+1. configure the DHCP service for `r2` and change nameserver to 8.8.8.8 in resolv.conf
+   
+    ![r2 dhcp](img/p6_1_r2.png)
+
+    restart `DHCP`
+
+    ![r2 dhcp restart](img/p6_2_r2.png)
+
+1.  `ws21` address after reboot and ping to ws22:
+
+    ![ws21 ip a](img/p6_3_ws21.png)
+
+1. Specify MAC address at ws11
+   
+   ![ws11 mac](img/p6_4_ws11.png)
+
+1. configure `r1`
+   
+   ![r1 dhcp](img/p6_5_r1.png)
+
+    and restart DHCP 
+
+   ![r1 dhcp restart](img/p6_6_r1.png)
+
+1. `ws11` address after reboot and ping to `ws22`:
+   
+   ![ws11 ip a](img/p6_7_ws11.png)
+
+1. request ip address update from ws21
+
+    ![ws21 update](img/p6_8_ws21.png)
+
+1. in the part 6 we used these dhcp server options:
+   
+   + `subnet`: definition of subnets
+   + `range`: tells DHCP that it can dynamically assign any IP address within the specified range (inclusive)
+   + `option routers`: sets the default gateway for the subnet (similar to the rule `- to: default via: ...`)
+   + `option domain-name-servers`: sets the DNS server for the subnet
+   + `host`: specify a certain IP address tied to a mac address (also known as static lease or reservation)
+
+
