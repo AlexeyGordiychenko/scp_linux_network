@@ -229,3 +229,45 @@
    + `host`: specify a certain IP address tied to a mac address (also known as static lease or reservation)
 
 
+## Part 7. NAT
+
+1. changing apache config on `r1` and `ws22`:
+   
+    ![r1 apache](img/p7_1_r1.png)
+
+    ![ws22 apache](img/p7_1_ws22.png)
+
+    and starting the server:
+
+    ![r1 start apache](img/p7_2_r1.png)
+
+    ![ws22 start apache](img/p7_2_ws22.png)
+
+1. firewall rules on `r2`:
+
+    ![r2 firewall](img/p7_3_r2.png)
+
+    then check connection between `ws22` and `r1`:
+   
+   ![ping ws22 from r1](img/p7_4_r1.png)
+
+1. add a rule allowing of all ICMP protocol packets on `r2`
+   
+   ![r2 firewall](img/p7_5_r2.png)
+
+    then check connection again
+
+   ![ping ws22 from r1](img/p7_5_r1.png)
+
+1. SNAT and DNAT rules on `r2`
+   
+   ![snat dnat r2](img/p7_6_r2.png)
+
+    telnet from `ws22` to the apache server on `r1`
+
+   ![telnet r2](img/p7_7_ws22.png)
+
+    telnet from `r1` to the apache server on `ws22`
+
+   ![telnet r1](img/p7_7_r1.png)
+
