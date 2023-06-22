@@ -271,3 +271,30 @@
 
    ![telnet r1](img/p7_7_r1.png)
 
+## Part 8. Bonus. Introduction to SSH Tunnels
+
+1. edit `/etc/apache2/ports.conf` on `ws22` and run apache server
+   
+    ![apache ws22](img/p8_1_ws22.png)
+
+1. Local TCP forwarding from `ws21` to `ws22` to access the web server on `ws22` from `ws21`
+   
+    ![local ssh](img/p8_2_ws21.png)
+
+    ![local ssh](img/p8_3_ws21.png)
+
+    ![local ssh](img/p8_4_ws21.png)
+
+    In short a local ssh tunneling  is used to forward a port from a client to a server. A client connects to a server, and then, connections made to a specified port on the client side are forwarded, via the SSH connection, to a specified port on the server side
+
+2. Remote TCP forwarding from `ws11` to `ws22` to access the web server on `ws22` from `ws11`
+   
+    ![remote ssh](img/p8_5_ws22.png)
+
+    ![remote ssh](img/p8_6_ws22.png)
+
+    ![remote ssh](img/p8_7_ws22.png)
+
+    In short a remote ssh tunneling is used to forward a port from a server to a client (opposite to local ssh tunneling). A client connects to a server, and then, connections made to a specified port on the server side are forwarded, via the SSH connection, to a specified port on the client side.
+
+
