@@ -2,6 +2,11 @@
 
 Linux networks configuration on virtual machines.
 
+As a result of the task there is a created [report](src/report.md)
+
+## Score:
+The final score is 140% (max)
+
 ## Task
 
 ### Part 1. **ipcalc** tool
